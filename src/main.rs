@@ -1,10 +1,7 @@
-mod members_data_calc;
-mod members_data_io;
-mod members_data_table;
-mod members_struct;
+mod members;
 
 fn main() -> std::io::Result<()> {
-    members_data_io::run()?;
+    members::members_data_io::run()?;
 
     Ok(())
 }
