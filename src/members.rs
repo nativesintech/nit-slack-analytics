@@ -1,5 +1,6 @@
 mod members_struct {
-  use chrono::{prelude::*, Datelike, NaiveDate};
+  use crate::util::slack::parse_slack_date;
+  use chrono::{prelude::*, Datelike};
   use serde::{Deserialize, Serialize};
   use std::collections::HashMap;
 
@@ -47,7 +48,7 @@ mod members_struct {
 
     fn joined_this_year(&self) -> u32 {
       self.iter().fold(0, |acc, s| {
-        let joined_this_year = NaiveDate::parse_from_str(&s.account_created, "%b %e, %Y")
+        let joined_this_year = parse_slack_date(&s.account_created)
           .map(|d| d.year() == Utc::now().year())
           .unwrap_or_default();
 
@@ -64,7 +65,7 @@ mod members_struct {
       let mut joined_by_year = HashMap::new();
 
       for member in self.iter() {
-        let year_joined = NaiveDate::parse_from_str(&member.account_created, "%b %e, %Y")
+        let year_joined = parse_slack_date(&member.account_created)
           .map(|d| d.year())
           .unwrap_or_default();
 
@@ -85,16 +86,10 @@ mod members_struct {
 
 mod members_data_calc {
   use crate::members::members_struct::{DataTransforms, Members, MembersData};
-  use std::fs::File;
-  use std::io::prelude::*;
+  use crate::util::io::parse_file;
 
   pub fn run() -> std::io::Result<MembersData> {
-    let mut file = File::open("./src/data/members-all-time.json")?;
-    let mut contents = String::new();
-
-    file.read_to_string(&mut contents)?;
-
-    let data: Members = serde_json::from_str(&contents)?;
+    let data: Members = parse_file::<Members>("./src/data/members-all-time.json")?;
 
     let total_members = data.total_members();
     let joined_this_year = data.joined_this_year();
