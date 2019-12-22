@@ -1,6 +1,6 @@
 use prettytable::{format::Alignment, Cell, Row, Table};
 
-use crate::member_struct::MembersData;
+use crate::members_struct::MembersData;
 
 pub fn run(members_data: MembersData) -> std::io::Result<Table> {
   let mut joined_by_year_keys_values: Vec<(&i32, &u32)> =

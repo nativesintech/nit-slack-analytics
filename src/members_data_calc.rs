@@ -1,7 +1,7 @@
 use std::fs::File;
 use std::io::prelude::*;
 
-use crate::member_struct::{DataTransforms, Members, MembersData};
+use crate::members_struct::{DataTransforms, Members, MembersData};
 
 pub fn run() -> std::io::Result<MembersData> {
   let mut file = File::open("./src/data/members-all-time.json")?;
