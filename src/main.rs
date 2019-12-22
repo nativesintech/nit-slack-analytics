@@ -1,10 +1,10 @@
-mod members_data_calc;
-mod members_data_io;
-mod members_data_table;
-mod members_struct;
+mod channels;
+mod members;
+mod util;
 
 fn main() -> std::io::Result<()> {
-    members_data_io::run()?;
+    members::members_data_io::run()?;
+    channels::channels_data_io::run()?;
 
     Ok(())
 }
