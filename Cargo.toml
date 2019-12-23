@@ -1,5 +1,5 @@
 [package]
-name = "nit_slack_data"
+name = "nit-slack-data"
 version = "0.1.0"
 authors = ["Adam Recvlohe <adam.recvlohe@gmail.com>"]
 edition = "2018"

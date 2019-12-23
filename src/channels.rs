@@ -1,7 +1,6 @@
 mod channels_struct {
   use serde::{Deserialize, Serialize};
   use std::collections::HashMap;
-  use std::str;
 
   #[derive(Serialize, Deserialize, Debug)]
   pub struct Channel {
@@ -48,8 +47,8 @@ mod channels_data_calc {
   use crate::channels::channels_struct::{Channels, ChannelsData, DataTransforms};
   use crate::util::io::parse_file;
 
-  pub fn run() -> std::io::Result<ChannelsData> {
-    let data = parse_file::<Channels>("./src/data/channels-all-time.json")?;
+  pub fn run(path: &'static str) -> std::io::Result<ChannelsData> {
+    let data = parse_file::<Channels>(path)?;
 
     let total_messages = data.total_messages();
     let messages_by_channel = data.messages_by_channel();
@@ -105,11 +104,11 @@ mod channles_data_table {
 }
 
 pub mod channels_data_io {
-  pub fn run() -> std::io::Result<()> {
+  pub fn run(path: &'static str) -> std::io::Result<()> {
     use crate::channels::channels_data_calc;
     use crate::channels::channles_data_table;
 
-    let data = channels_data_calc::run()?;
+    let data = channels_data_calc::run(path)?;
     let table = channles_data_table::run(data)?;
 
     table.printstd();

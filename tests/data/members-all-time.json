@@ -1,0 +1,24 @@
+[
+  {
+    "Name": "jane doe",
+    "What I Do": "development",
+    "User ID": "id",
+    "Username": "jane.doe",
+    "Account type": "Member",
+    "Account created": "Dec 1, 2017",
+    "Included in bill": 0,
+    "Days active": "",
+    "Messages posted": 2
+  },
+  {
+    "Name": "john doe",
+    "What I Do": "development",
+    "User ID": "id",
+    "Username": "john.doe",
+    "Account type": "Member",
+    "Account created": "Nov 30, 2017",
+    "Included in bill": 1,
+    "Days active": "",
+    "Messages posted": 5
+  }
+]
