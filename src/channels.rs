@@ -78,8 +78,8 @@ mod channles_data_table {
         let mut messages_by_channel_header = vec![];
         let mut messages_by_channel_value = vec![];
         for (k, v) in messages_by_channel_key_values.iter() {
-            messages_by_channel_header.push(Cell::new(&k.to_string()));
-            messages_by_channel_value.push(Cell::new(&v.to_string()));
+            messages_by_channel_header.push(Cell::new(*k));
+            messages_by_channel_value.push(Cell::new(&*(v).to_string()));
         }
 
         messages_by_channel_header.truncate(5);

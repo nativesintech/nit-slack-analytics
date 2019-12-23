@@ -38,8 +38,7 @@ mod members_struct {
         fn total_members(&self) -> u32 {
             self.iter().fold(0, |acc, s| {
                 if s.account_type == "Member" {
-                    let res = acc + 1;
-                    res
+                    acc + 1
                 } else {
                     acc
                 }
@@ -53,8 +52,7 @@ mod members_struct {
                     .unwrap_or_default();
 
                 if joined_this_year {
-                    let res = acc + 1;
-                    res
+                    acc + 1
                 } else {
                     acc
                 }
@@ -74,7 +72,7 @@ mod members_struct {
                         joined_by_year.insert(year_joined, 1);
                     }
                     Some(count) => {
-                        *count = *count + 1;
+                        *count += 1;
                     }
                 };
             }
