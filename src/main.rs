@@ -1,10 +1,7 @@
-mod channels;
-mod members;
-mod util;
+use nit_slack_data::run;
 
 fn main() -> std::io::Result<()> {
-    members::members_data_io::run()?;
-    channels::channels_data_io::run()?;
+    run()?;
 
     Ok(())
 }

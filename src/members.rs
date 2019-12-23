@@ -84,12 +84,12 @@ mod members_struct {
   }
 }
 
-mod members_data_calc {
+pub mod members_data_calc {
   use crate::members::members_struct::{DataTransforms, Members, MembersData};
   use crate::util::io::parse_file;
 
-  pub fn run() -> std::io::Result<MembersData> {
-    let data: Members = parse_file::<Members>("./src/data/members-all-time.json")?;
+  pub fn run(path: &'static str) -> std::io::Result<MembersData> {
+    let data: Members = parse_file::<Members>(path)?;
 
     let total_members = data.total_members();
     let joined_this_year = data.joined_this_year();
@@ -148,8 +148,8 @@ pub mod members_data_io {
   use crate::members::members_data_calc;
   use crate::members::members_data_table;
 
-  pub fn run() -> std::io::Result<()> {
-    let members_data = members_data_calc::run()?;
+  pub fn run(path: &'static str) -> std::io::Result<()> {
+    let members_data = members_data_calc::run(path)?;
     let table = members_data_table::run(members_data)?;
 
     table.printstd();
